@@ -1,5 +1,6 @@
 import sqlite3
 
+
 class IngredientManager:
     def __init__(self):
         # The ingredients we have inputted

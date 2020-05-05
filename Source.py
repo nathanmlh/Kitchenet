@@ -1,14 +1,20 @@
 from IngredientManager import IngredientManager
-import sqlite3
+from ApiManager import ApiManager
+
+# import sqlite3
+import json
 
 if __name__ == "__main__":
-    # conn = sqlite3.connect("Kitchenet.db")
-    #
-    # conn.execute("DELETE FROM Fridge")
-    #
-    # conn.commit()
-    # conn.close()
+    apimanager = ApiManager()
+    apimanager.get_key()
 
-    manager = IngredientManager()
-    print(manager.db_contents())
-    manager.close()
+    # A dictionary of all our jokes
+    jokes = {}
+    jokes['jokes'] = []
+
+    # Outputting 140 random jokes to our dictionary object
+    for i in range(10):
+        jokes['jokes'].append(apimanager.joke())
+
+    with open('Jokes.json', 'w') as outfile:
+        json.dump(jokes, outfile)
