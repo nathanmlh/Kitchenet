@@ -8,13 +8,8 @@ if __name__ == "__main__":
     apimanager = ApiManager()
     apimanager.get_key()
 
-    # A dictionary of all our jokes
-    jokes = {}
-    jokes['jokes'] = []
-
-    # Outputting 140 random jokes to our dictionary object
-    for i in range(10):
-        jokes['jokes'].append(apimanager.joke())
-
-    with open('Jokes.json', 'w') as outfile:
-        json.dump(jokes, outfile)
+    response = apimanager.get_recipes(["apples"]).json()
+    print(type(response))
+    print(response)
+    # for key in response.keys():
+    #     print("{} : {}".format(key, response[key]))
