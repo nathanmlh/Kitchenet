@@ -1,6 +1,6 @@
 import json
 
-with open('./recipes.json') as f:
+with open('../data/recipes.json') as f:
   recipes_json = json.load(f)
 
 list_of_recipes = recipes_json["recipe"]

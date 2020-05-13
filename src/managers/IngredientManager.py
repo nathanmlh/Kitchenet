@@ -6,7 +6,7 @@ class IngredientManager:
         # The ingredients we have inputted
         self.ingredients = {}
         # The filename of the database
-        self.filename = "Kitchenet.db"
+        self.filename = "../data/Kitchenet.db"
         # The connection object for the class
         self.conn = sqlite3.connect(self.filename)
 

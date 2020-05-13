@@ -1,8 +1,6 @@
-from IngredientManager import IngredientManager
-from ApiManager import ApiManager
+from src.managers.ApiManager import ApiManager
 
 # import sqlite3
-import json
 
 if __name__ == "__main__":
     apimanager = ApiManager()
