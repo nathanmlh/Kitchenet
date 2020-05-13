@@ -7,6 +7,8 @@ class ApiManager:
         self.key = ""
         self.api = None
         self.active = False
+        self.apiKey_url = ""
+        self.points_used_today = 0
 
     def __repr__(self):
         return "ApiManager"
@@ -18,6 +20,7 @@ class ApiManager:
         """
         self.key = input("Please enter your api key: ")
         self.api = sp.API(self.key)
+        self.apiKey_url = "?apiKey=" + self.key
         self.active = True
 
     def print_key(self):
@@ -56,16 +59,26 @@ class ApiManager:
         if self.active:
             ingredients = ",".join(ingredients)
             payload = {
+                'apiKey': self.key,
                 'ingredients': ingredients,
                 'number': 5,
                 'ranking': 1
             }
             endpoint = "https://api.spoonacular.com/recipes/findByIngredients"
-            headers = {
-                "X-Mashape-Key": self.key,
-                "X-Mashape-Host": "mashape host"
-            }
-            response = requests.get(endpoint, params=payload, headers=headers)
+            # headers = {
+            #     "X-Mashape-Key": self.key,
+            #     "X-Mashape-Host": "mashape host"
+            # }
+            response = requests.get(endpoint, params=payload)
+
+            print("This is your url for the response: ", response.url)
+            print("This is your text for the response: ", response.text)
+
+            print("This request used: ", response.headers["X-API-Quota-Request"])
+
+            self.points_used_today = response.headers["X-API-Quota-Used"]
+            print("Today you have used this many points: ", self.points_used_today)
+
             return response
         else:
             return self.activation_failed()
