@@ -13,13 +13,12 @@ class ApiManager:
     def __repr__(self):
         return "ApiManager"
 
-    def get_key(self):
+    def get_key(self, key):
         """
         Gets the api key and sets it to active
         :return: None
         """
-        self.key = input("Please enter your api key: ")
-        self.api = sp.API(self.key)
+        self.api = sp.API(key)
         self.apiKey_url = "?apiKey=" + self.key
         self.active = True
 
